@@ -1,0 +1,59 @@
+﻿@model IEnumerable<CoureLearner.WebApi.Models.Course>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+<div class="row-fluid">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <div class="span7">
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseName)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseDescrption)
+                </th>
+
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CourseDescrption)
+                    </td>
+
+                    <td>
+                        @if (Request.IsAuthenticated)
+                        {
+                            <a href="@Url.Action("Edit", "Course", new { id = item.CourseID })"><i class="icon-edit"></i>&nbsp;Edit</a><text>|</text>
+                            @Html.ActionLink("View", "View", new { courseId = item.CourseID })  <text>|</text>
+                            <a href="@Url.Action("Delete", "Course", new { id = item.CourseID })"><i class="icon-trash"></i>&nbsp;Delete</a>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Details", "View", new { courseId = item.CourseID })
+                        }
+
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+
+</div>

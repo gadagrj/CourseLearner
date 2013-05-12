@@ -1,0 +1,125 @@
+﻿@model CoureLearner.WebApi.Models.Course
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Course", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Course</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CourseName)
+            @Html.ValidationMessageFor(model => model.CourseName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseImgURl, "Cousrse Image")
+        </div>
+        <div class="row-fluid">
+
+          @*  <div class="span2 ">
+                <div id="drop_zone">Drop files here</div>
+                <output id="list"></output>
+            </div>*@
+            <div class="span2">
+              <input type="file" name="file" id="coursImgFile"/>
+            </div>
+
+        </div>
+        <br/>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseDescrption, "Course Description")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CourseDescrption)
+            @Html.ValidationMessageFor(model => model.CourseDescrption)
+        </div>
+        <div class="editor-label">
+            @Html.Label("Category")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("cboDropdown", new SelectList(ViewBag.categoryList, "CategoryID", "CategoryName"))
+            or  <span>Create new category : </span>@Html.Editor("coursecategory")
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ActivationTime)
+        </div>
+        <div class="editor-field">
+            @Html.TextBox("ActivationTime", null, new { @class = "CourseLearnerdatepicker" })
+        </div>
+
+
+
+        <p>
+            <input type="submit" value="Create" id="btnCreateCourse" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script type="text/javascript">
+    $(function () {
+        $('.CourseLearnerdatepicker').each(createDatePicker);
+
+        //function handleFileSelect(evt) {
+        //    evt.stopPropagation();
+        //    evt.preventDefault();
+
+        //    var files = evt.dataTransfer.files; // FileList object.
+
+        //    // files is a FileList of File objects. List some properties.
+        //    var output = [];
+        //    for (var i = 0, f; f = files[i]; i++) {
+        //        // Only process image files.
+        //        if (!f.type.match('image.*')) {
+        //            alert('Please add Images only');
+        //        } else {
+        //            output.push('<li><strong>', escape(f.name), '</strong> (', f.type || 'n/a', ') - ',
+        //                                     f.size, ' bytes, last modified: ',
+        //                                     f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : 'n/a',
+        //                                     '</li>');
+        //        }
+               
+        //    }
+        //    document.getElementById('list').innerHTML = '<ul>' + output.join('') + '</ul>';
+        //}
+
+        //function handleDragOver(evt) {
+        //    evt.stopPropagation();
+        //    evt.preventDefault();
+        //    evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+        //}
+
+        //// Setup the dnd listeners.
+        //var dropZone = document.getElementById('drop_zone');
+        //dropZone.addEventListener('dragover', handleDragOver, false);
+        //dropZone.addEventListener('drop', handleFileSelect, false);
+    });
+
+    $('#btnCreateCourse').on('click', validateCourse);
+
+    function validateCourse() {
+        if ($('#coursImgFile').val() == '') {
+            alert('Please select the image');
+            return false;
+        }
+
+    }
+</script>

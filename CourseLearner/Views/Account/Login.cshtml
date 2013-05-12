@@ -1,0 +1,65 @@
+﻿@model CourseLearner.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+
+<section id="loginForm" class="span5">
+    <h2>Already Registered ? then sign in..</h2>
+    @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Log in</legend>
+
+            <div>
+                <div class="control-group">
+                    @Html.LabelFor(m => m.UserName)
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on">
+                                <i class="icon-user"></i></span>
+                            @Html.TextBoxFor(m => m.UserName)
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="control-group">
+
+
+                    @Html.LabelFor(m => m.Password)
+                    <div class="controls">
+                        <div class="input-prepend">
+                            <span class="add-on"><i class="icon-key"></i></span>
+                            @Html.PasswordFor(m => m.Password)
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Log in" />
+            </div>
+
+        </fieldset>
+        <p>
+            @Html.ActionLink("Register", "Register") if you don't have an account.
+        </p>
+    }
+</section>
+
+<section class="span4" id="socialLoginForm">
+    <h2>Login with Social sites </h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

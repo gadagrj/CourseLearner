@@ -1,0 +1,64 @@
+﻿@model CoureLearner.WebApi.Models.CourseAssets
+
+@using (Html.BeginForm("Create", "CourseAsset", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Add Course material</legend>
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AssetFileName, "Title")
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AssetFileName)
+            @Html.ValidationMessageFor(model => model.AssetFileName)
+        </div>
+        <br />
+         <div class="editor-label">
+            @Html.LabelFor(model => model.AssetHeaderName, "Descrption")
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.AssetHeaderName)
+            @Html.ValidationMessageFor(model => model.AssetHeaderName)
+        </div>
+        <br />
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AssetFileName, "Choose Video")
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" id="videofile" />
+        </div>
+        <br />
+
+        <p>
+            <input type="submit" id="btncreateAsset" value="Create" class="btn btn-primary" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
+<script>
+    $(function () {
+        $('#btncreateAsset').on('click', validate);
+       
+    })
+    
+    function validate() {
+        if ($('#videofile').val() == '') {
+            alert('Please Select file');
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+</script>

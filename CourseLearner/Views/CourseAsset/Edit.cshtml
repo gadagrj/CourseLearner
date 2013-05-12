@@ -1,0 +1,44 @@
+﻿@model CoureLearner.WebApi.Models.CourseAssets
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>CourseAssets</legend>
+
+        @Html.HiddenFor(model => model.AssetID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AssetHeaderName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AssetHeaderName)
+            @Html.ValidationMessageFor(model => model.AssetHeaderName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AssetFileName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AssetFileName)
+            @Html.ValidationMessageFor(model => model.AssetFileName)
+        </div>
+        <p>
+            <input type="submit"  class="btn btn-primary" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,29 @@
+﻿@model CourseLearner.ViewModels.previewVideoViewModel
+
+<div class="row-fluid">
+    <P><strong>@Model.CourseName</strong> By : @Model.AuthorName
+        <br/>
+      <span>@Model.FileName</span><br/>
+    <span>@Model.topicName</span><br/>
+    <span>@Model.CreatedTime.ToShortDateString()</span><br/>
+    </p>
+    </div>
+<div class="row-fluid">
+    <div class="span9">
+        <video width="540" height="300" controls>
+            <!-- MP4 must be first for iPad! -->
+            <source src="@Url.Content("~/VideoFiles/"+Model.AssetGuid +".mp4")"  type="video/mp4" /><!-- Safari / iOS video    -->
+           
+            <source src="__VIDEO__.OGV" type="video/ogg" /><!-- Firefox / Opera / Chrome10 -->
+            <!-- fallback to Flash: -->
+            <object width="540" height="300" type="application/x-shockwave-flash" data="__FLASH__.SWF">
+                <!-- Firefox uses the `data` attribute above, IE/Safari uses the param below -->
+                <param name="movie" value="__FLASH__.SWF" />
+                <param name="flashvars" value="controlbar=over&amp;image=__POSTER__.JPG&amp;file=@Url.Content("~/VideoFiles/"+Model.AssetGuid +".mp4")" />
+                <!-- fallback image. note the title field below, put the title of the video there -->
+                <img src="" width="540" height="300" alt="__TITLE__"
+                    title="No video playback capabilities, please download the video below" />
+            </object>
+        </video>
+    </div>
+</div>

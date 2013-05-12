@@ -1,0 +1,46 @@
+﻿@model CoureLearner.WebApi.Models.Course
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Course</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CourseName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CourseImgURl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseImgURl)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CourseDescrption)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseDescrption)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedTimeStamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedTimeStamp)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

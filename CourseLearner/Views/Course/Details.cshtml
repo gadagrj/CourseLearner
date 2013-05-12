@@ -1,0 +1,43 @@
+﻿@model CoureLearner.WebApi.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Course</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CourseName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CourseImgURl)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseImgURl)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CourseDescrption)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseDescrption)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreatedTimeStamp)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreatedTimeStamp)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CourseID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>CourseLearner</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/siteCSS")
+    @Styles.Render("~/Content/themes/base/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @{
+        Html.RenderPartial("_styleSheets");
+    }
+    
+</head>
+<body>
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand"href='@Url.Action("index", "Home")'>CourseLearner</a>
+                <div class="nav-collapse in collapse" style="height: auto;">
+
+                    <ul class="nav homePageMenu">
+                        <li class="active"><a href='@Url.Action("index", "Home")'>Home</a></li>
+                        <li><a href="@Url.Action("Index", "Course")">Course</a></li>
+                        <li><a href="@Url.Action("Index", "CourseAsset")">Course Materials</a></li>
+                        <li><a href="@Url.Action("About", "Home")">About</a></li>
+                        
+                        </ul>
+                    <div class="pull-right" style="padding-right: 25px;">
+                        @if (Request.IsAuthenticated)
+                        {
+                            <text>
+                            <div>
+                                <div class="btn-group">
+                                    <a class="btn btn-success dropdown-toggle" data-toggle="dropdown"><i class="icon-user icon-white"></i> &nbsp;@User.Identity.Name  <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="@Url.Action("Manage", "Account")"><i class="icon-key"></i>&nbsp; Change Password</a></li>
+                                        <li><a href="@Url.Action("Index", "Course")"><i class="icon-home"></i>&nbsp;Home</a></li>
+                                        <li class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </div>
+                                |
+                                @Html.ActionLink("Log Out", "LogOff", "Account", routeValues: null, htmlAttributes: new { style = "color:white;text-decoration:none;", id = "logOut" })
+                            </div>
+
+                            </text>
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { style = "color:white;text-decoration:none;", id = "registerLink" }) <text>&nbsp;&nbsp;|&nbsp;&nbsp; </text>
+                            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { style = "color:white;text-decoration:none;", id = "loginLink" })
+                        }
+                    </div>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <div class="container-fluid">
+        <div class="row-fluid">
+            @RenderBody()
+        </div>
+        <!--/row-->
+    </div>
+    <hr>
+
+    <footer class="footer text-center">
+        <p>© CourseLearner  an Azure based E-Learning Solution</p>
+    </footer>
+    @RenderSection("scripts", required: false)
+    
+</body>
+</html>

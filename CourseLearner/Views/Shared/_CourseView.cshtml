@@ -1,0 +1,60 @@
+﻿@model List<CourseLearner.ViewModels.CourseIndexViewModel>
+
+
+<div id="searchResults" class="row-fluid" style="margin: 10px 0px 0px 0px;">
+    <div class="span2  bs-docs-sidebar">
+        <h5>Popular Course</h5>
+        <ul class="nav nav-list bs-docs-sidenav">
+            @foreach (var item in Model)
+            {
+                <li><a href="@Url.Action("View", "Course", new { courseid = @item.CourseID })" class=""><i class="icon-chevron-right"></i>@item.CourseName</a></li>
+            }
+        </ul>
+    </div>
+    <div class="offset1 span9 searchresults">
+        <div class="row-fluid">
+            <br />
+        </div>
+
+        <table class="table table-hover table-bordered" style="width: 99%">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="span12">
+                            <div class="span1">
+                                <img data-src="holder.js/100x100" alt="100x100" style="width:100px; height: 100px;" src=@Url.Content("~/UploadedImages/" + @item.ImgUrl)>
+                            </div>
+                            <div class="span11">
+                                <div class="caption">
+                                    <a href="@Url.Action("View", "Course", new { courseid = @item.CourseID })">
+                                        <h3 >@item.CourseName</h3>
+                                    </a>
+
+                                    <p>@item.CourseDescription</p>
+                                    <p>Author Name : @item.AuthorName</p>
+                                    <p>Activation Date : @item.ActivationDate.ToShortDateString()</p>
+                                    <p>
+                                        <a href="@Url.Action("View", "Course", new { courseid = @item.CourseID })" class="btn btn-primary" >View </a>
+                                        @{ 
+                if (Request.IsAuthenticated)
+                {
+                                            <a href="#" class="btn btn-primary" onclick="alert('Feature is in progress');return false;">Enroll</a>
+                }
+                                        }
+                                    </p>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+                
+            }
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseLearner", "CourseLearner\CourseLearner.csproj", "{3FAFF9D3-E7C2-4FB6-953D-50878A5AACBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CourseLearner.Tests", "CourseLearner.Tests\CourseLearner.Tests.csproj", "{7BA20665-7739-451B-ADA8-E3611E5F551B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoureLearner.WebApi", "CoureLearner.WebApi\CoureLearner.WebApi.csproj", "{85BA127E-BFA3-422F-B047-B3A977812EDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FAFF9D3-E7C2-4FB6-953D-50878A5AACBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FAFF9D3-E7C2-4FB6-953D-50878A5AACBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FAFF9D3-E7C2-4FB6-953D-50878A5AACBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FAFF9D3-E7C2-4FB6-953D-50878A5AACBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA20665-7739-451B-ADA8-E3611E5F551B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA20665-7739-451B-ADA8-E3611E5F551B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA20665-7739-451B-ADA8-E3611E5F551B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA20665-7739-451B-ADA8-E3611E5F551B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85BA127E-BFA3-422F-B047-B3A977812EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85BA127E-BFA3-422F-B047-B3A977812EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85BA127E-BFA3-422F-B047-B3A977812EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85BA127E-BFA3-422F-B047-B3A977812EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

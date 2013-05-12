@@ -1,0 +1,118 @@
+﻿@model IEnumerable<CoureLearner.WebApi.Models.CourseAssets>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <span class="label">Selct the course and click on to Add new Materials to course. </span>
+    <br />
+    @using (Html.BeginForm("Create", "CourseAsset", FormMethod.Post))
+    {
+        <text>Available courses :</text> @Html.DropDownList("courseListdropdown", (IEnumerable<SelectListItem>)ViewBag.coursList, "Select Course")
+        @Html.Hidden("hdnCoursID")
+        <a href="#" id="creatNewAsset" class="btn btn-primary">Add</a>
+    }
+
+</p>
+<table class="table table-bordered table-hover">
+    <tr>
+
+        <th>Title
+        </th>
+        <th>Video File Name
+        </th>
+        <th>Video Size
+        </th>
+        <th>Uploaded Time
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetHeaderName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetFileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssetSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedTimeStamp)
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "CourseAsset", new { id = item.AssetID })"><i class="icon-edit"></i>&nbsp;Edit</a>|
+                <a href="#" data-course-Preview="1" data-assetid="@item.AssetID" data-courseid="@item.CourseID"><i class="icon-play-circle"></i>&nbsp;Preview</a>|
+                <a href="@Url.Action("Delete", "CourseAsset", new { id = item.AssetID })"><i class="icon-trash"></i>&nbsp;Delete</a>
+
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    </div>
+    <div class="modal-body">
+        <span id="modelText"></span>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $('a[data-course-Preview=1]').on('click', PreviewVideo);
+        $('#courseListdropdown').on('change', dropdownchange);
+        $('#creatNewAsset').on('click', submitForm);
+        $('#myModal').on('hidden', function () {
+            var videoObj = $('video');
+            videoObj[0].pause();
+        });
+        function PreviewVideo() {
+            var currObj = $(this);
+            var id = currObj.data('assetid');
+            var courseid = currObj.data('courseid');
+            //modelText
+            var option = {
+                url: '@Url.Action("Preview", "Course")',
+                data: { id: id, courseID: courseid }
+
+            };
+            $.ajax(option).done(function (data) {
+                $('#modelText').replaceWith(data);
+            });
+            $('#myModal').modal('show');
+            return false;
+
+        }
+
+        function dropdownchange() {
+            $('#hdnCoursID').val(this.value);
+        }
+
+        function submitForm() {
+
+            if ($('#hdnCoursID').val() == "") {
+
+                alert('Please select the course');
+            } else {
+                window.location.href = '@Url.Action("Create", "CourseAsset")' + "/" + $('#hdnCoursID').val();
+        }
+
+
+    }
+    });
+</script>

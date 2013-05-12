@@ -1,0 +1,17 @@
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\CoureLearner.WebApi.dll.config
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\CoureLearner.WebApi.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\CoureLearner.WebApi.pdb
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\EntityFramework.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\MediaHandlerPro.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\Newtonsoft.Json.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\System.Net.Http.Formatting.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\System.Web.Http.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\System.Web.Http.WebHost.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\EntityFramework.xml
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\Newtonsoft.Json.xml
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\System.Net.Http.Formatting.xml
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\System.Web.Http.xml
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\bin\Release\System.Web.Http.WebHost.xml
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\obj\Release\CoureLearner.WebApi.csprojResolveAssemblyReference.cache
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\obj\Release\CoureLearner.WebApi.dll
+D:\ScratchPad\WebApps\CourseLearner\CoureLearner.WebApi\obj\Release\CoureLearner.WebApi.pdb

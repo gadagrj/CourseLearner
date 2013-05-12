@@ -1,0 +1,176 @@
+﻿@model List<CourseLearner.ViewModels.CourseIndexViewModel>
+
+@using (Html.BeginForm())
+{
+    <div class="hero-unit" style="background-image: url('../../Images/princeton.jpg'); height: 190px;">
+
+        <div class="pagination-centered">
+            <h1 style="display: block; font-size: 40px; line-height: 1.1em; color: rgb(255, 255, 255); position: relative; height: 100%; max-width: 15em; text-shadow: 0 0 24px rgba(0,0,0,0.5),0 0 64px rgba(0,0,0,0.25),0 2px rgba(0,0,0,0.75); font-family: enriqueta-bold,Garamond,serif;">Learn courses, online, for free.</h1>
+            <br />
+
+
+            <div class="pagination-centered">
+                <a style="display: block; font-size: 20px; line-height: 1.1em; color: rgb(255, 255, 255); position: relative; height: 100%; max-width: 15em; text-shadow: 0 0 24px rgba(0,0,0,0.5),0 0 64px rgba(0,0,0,0.25),0 2px rgba(0,0,0,0.75); font-family: enriqueta-bold,Garamond,serif;"
+                    href="#" onclick="ShowEasterEgg();">Know How it works</a>
+            </div>
+        </div>
+    </div>
+        
+    
+    <div class="row-fluid pagination-centered">
+        <div>
+            @Html.TextBox("txtCourseAutoCOmplete", null, new { @class = "span6", data_courseLearner_autocomplete = "true", height = "36px", placeholder = "Enter the search term for course", data_autocompletesource = @Url.Action("GetCourseList", "Home") })
+            <input type="submit" class="btn btn-primary" id="btnSearchCourse" value="Search" />
+        </div>
+    </div>
+    <div class="row-fluid">
+        @{
+    if (Model.Count > 0)
+    {
+        Html.RenderPartial("_CourseView", Model);
+    }
+    else
+    {
+            <text>"No Course Found"</text>
+    }
+        }
+    </div>
+    
+    <div class="row-fluid">
+        <div id="myModal" class="modal hide fade modal-large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Easter Egg..!!!
+                </h3>
+            </div>
+            <div class="modal-body" style="height: 90%; width: 100%;">
+                <h5>Seems you are lucky.. may be Azure golden egg..?</h5>
+
+                <div class="mike dd">
+                    <img src="http://www.microsoft-careers.com/sites/microsoft_global/images/tlp-windows-azure.png" style="width: 300px; max-width: 300px;" />
+                </div>
+                <div class="mike" id="verti-egg"></div>
+
+                <audio id="popTwo" no-controls>
+                    <source src="http://s.cdpn.io/16395/popTwo.mp3" type="audio/mpeg">
+                    <source src="http://s.cdpn.io/16395/popTwo.ogg" type="audio/ogg">
+                </audio>
+                <div>
+                    <h4 id="welcomeMsg" class="text-success"></h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            </div>
+        </div>
+    </div>
+
+    
+}
+
+<style>
+    .mike {
+        -webkit-animation: mike-move 3s 3s ease-out forwards, mike-float 3.2s infinite;
+    }
+
+    #imgLogo {
+        height: 120px;
+        width: 80px;
+        margin-left: 10px;
+        margin-top: 25px;
+    }
+
+    #verti-egg {
+        background-color: rgb(255, 133, 0);
+        width: 105px;
+        height: 180px;
+        margin: 4px 4px 1px 100px;
+        -webkit-border-radius: 50%/60% 60% 40% 40%;
+        -moz-border-radius: 50%/60% 60% 40% 40%;
+        border-radius: 50%/60% 60% 40% 40%;
+        -webkit-box-shadow: 0px 0px 20px #D5D3D3, 0px 0px 20px #D5D3D3;
+        -moz-box-shadow: 0px 0px 20px #D5D3D3, 0px 0px 20px #D5D3D3;
+        box-shadow: 2px 3px 21px #D5D3D3, 0px 0px 20px #D5D3D3;
+        cursor: url(../../Images/hammer.png) 0 0, auto;
+    }
+
+    .mike {
+        width: 100px;
+        position: absolute;
+        top: 40%;
+        left: 16%;
+        -webkit-transform: rotateZ(-5deg);
+        -moz-transform: rotateZ(-5deg);
+        -o-transform: rotateZ(-5deg);
+        -ms-transform: rotateZ(-5deg);
+        transform: rotateZ(-5deg);
+    }
+
+    .dd {
+        top: 102px;
+        left: 35%;
+        z-index: 0;
+    }
+
+    @@-webkit-keyframes mike-move {
+        100% {
+            left: 12%;
+        }
+    }
+
+    @@-webkit-keyframes mike-float {
+        50% {
+            -webkit-transform: rotateZ(5deg) translateY(-5px);
+        }
+    }
+</style>
+
+<script type="text/javascript">
+    var imgText = '';
+    $(function () {
+        $('input:text[data-courseLearner-autocomplete="true"]').each(createAutoComplete);
+        $('#btnSearchCourse').on('click', searchResults);
+        $('#verti-egg').on('click', breakEgg);
+        function searchResults() {
+            var searchTerm = $('#txtCourseAutoCOmplete').val();
+            filterResults(searchTerm);
+            return false;
+        }
+
+        imgText = '<img  id="imgLogo"  src="http://i.imgur.com/sPo99Ra.png" />';
+
+    });
+    function ShowEasterEgg() {
+        $('#verti-egg').empty();
+        $('#myModal').modal('show');
+
+        return false;
+    }
+
+    function breakEgg() {
+        var media = $('audio')[0];
+        media.play();
+        $('#welcomeMsg').empty();
+        $('#verti-egg').empty().append(imgText).fadeIn();
+
+        $('#welcomeMsg').typeWriter({
+            animDelay: 100,  // the bigger the number the slower the typing
+            text: 'Welcome to Azure Developer Challenge with An Easter Egg!!'
+        });
+        return false;
+    }
+
+    $.fn.typeWriter = function (opts) {
+        var $this = this,
+            defaults = {
+                animDelay: 50
+            },
+            settings = $.extend(defaults, opts);
+
+        $.each(settings.text.split(''), function (i, letter) {
+            setTimeout(function () {
+                $this.html($this.html() + letter);
+            }, settings.animDelay * i);
+        });
+    };
+</script>
